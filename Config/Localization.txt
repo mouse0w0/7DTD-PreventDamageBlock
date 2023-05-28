@@ -1,0 +1,5 @@
+Key,File,Type,UsedInMainMenu,NoTranslate,english,Context / Alternate Text,german,latam,french,italian,japanese,koreana,polish,brazilian,russian,turkish,schinese,tchinese,spanish
+PDB_ConsoleCmdDesc,,,,,PreventDamageBlock's console command,,,,,,,,,,,,阻止伤害物块模组的控制台指令,,
+PDB_ConsoleCmdHelp,,,,,PreventDamageBlock's console command,,,,,,,,,,,,阻止伤害物块模组的控制台指令,,
+PDB_ReloadConfig,,,,,[PreventDamageBlock] Reloaded config,,,,,,,,,,,,[阻止伤害物块]重载配置文件完成,,
+PDB_NoEnoughParma,,,,,[PreventDamageBlock] Loaded config,,,,,,,,,,,,[阻止伤害物块]参数不足,,
