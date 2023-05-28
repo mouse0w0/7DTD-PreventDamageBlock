@@ -5,7 +5,8 @@
   "PreventDamageBlockByItemTag": [
     "gun",
     "bow",
-    "crossbow"
+    "crossbow",
+    "turretRanged"
   ],
   "PreventDamageBlockByEntity": [],
   "PreventDamageBlockByEntityTag": []
