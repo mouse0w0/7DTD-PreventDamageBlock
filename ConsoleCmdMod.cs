@@ -4,6 +4,7 @@ namespace PreventDamageBlock;
 
 public class ConsoleCmdMod : ConsoleCmdAbstract
 {
+    public override bool AllowedInMainMenu => true;
     public override string[] GetCommands() => new[]
     {
         "preventdamageblock",
