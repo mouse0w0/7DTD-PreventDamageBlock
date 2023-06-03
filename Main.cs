@@ -5,6 +5,8 @@ namespace PreventDamageBlock
     public class Main : IModApi
     {
         public static Mod Instance { get; private set; }
+
+        public static bool Debug { get; set; }
         
         public void InitMod(Mod _modInstance)
         {

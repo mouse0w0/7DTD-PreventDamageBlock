@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using HarmonyLib;
+using UnityEngine;
 
 namespace PreventDamageBlock;
 
@@ -15,8 +16,23 @@ internal static class DamageBlockPatch
         if (_damagePoints <= 0) return true;
         var entity = _world.GetEntity(_entityIdThatDamaged);
         if (entity == null) return true;
-        if (!Config.IsPreventDamageBlock(entity)) return true;
+        if (Main.Debug)
+        {
+            var entityClass = entity.EntityClass;
+            if (entity is EntityAlive alive)
+            {
+                var itemClass = alive.inventory.holdingItem;
+                Log.Out(
+                    $"[PreventDamageBlock] Damage, Entity={entityClass.classname}(Tags={string.Join(",", entity.EntityTags.GetTagNames())}), Item={itemClass.Name}(Tags={string.Join(",", itemClass.ItemTags.GetTagNames())})");
+            }
+            else
+            {
+                Log.Out(
+                    $"[PreventDamageBlock] Damage, Entity={entityClass.classname}(Tags={string.Join(",", entityClass.Tags.GetTagNames())})");
+            }
+        }
 
+        if (!Config.IsPreventDamageBlock(entity)) return true;
         __result = 0;
         return false;
     }
@@ -47,5 +63,31 @@ internal static class DamageBlockPatch
 
         SingletonMonoBehaviour<ConnectionManager>.Instance.Clients.ForEntityId(player.entityId)
             .SendPackage(__instance);
+    }
+    
+    [HarmonyPatch(typeof(Explosion), nameof(Explosion.AttackBlocks))]
+    [HarmonyPrefix]
+    [HarmonyPriority(Priority.First)]
+    internal static bool Explosion_AttackBlocks_Prefix(World ___world, int _entityThatCausedExplosion)
+    {
+        var entity = ___world.GetEntity(_entityThatCausedExplosion);
+        if (entity == null) return true;
+        if (Main.Debug)
+        {
+            var entityClass = entity.EntityClass;
+            if (entity is EntityAlive alive)
+            {
+                var itemClass = alive.inventory.holdingItem;
+                Log.Out(
+                    $"[PreventDamageBlock] Explosion, Entity={entityClass.classname}(Tags={string.Join(",", entity.EntityTags.GetTagNames())}), Item={itemClass.Name}(Tags={string.Join(",", itemClass.ItemTags.GetTagNames())})");
+            }
+            else
+            {
+                Log.Out(
+                    $"[PreventDamageBlock] Explosion, Entity={entityClass.classname}(Tags={string.Join(",", entityClass.Tags.GetTagNames())})");
+            }
+        }
+
+        return !Config.IsPreventDamageBlock(entity);
     }
 }

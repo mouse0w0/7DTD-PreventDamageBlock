@@ -6,6 +6,7 @@
     "gun",
     "bow",
     "crossbow",
+    "launcher",
     "turretRanged"
   ],
   "PreventDamageBlockByEntity": [],

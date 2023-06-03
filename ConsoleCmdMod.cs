@@ -27,6 +27,12 @@ public class ConsoleCmdMod : ConsoleCmdAbstract
                 Log.Out(Localization.Get("PDB_ReloadConfig"));
                 return;
             }
+            case "debug":
+            {
+                Main.Debug = !Main.Debug;
+                Log.Out($"[PreventDamageBlock] Debug {(Main.Debug ? "Enabled" : "Disabled")}");
+                return;
+            }
         }
     }
 
