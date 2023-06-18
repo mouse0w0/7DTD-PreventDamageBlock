@@ -1,7 +1,5 @@
 ﻿{
-  "PreventDamageBlockByItem": [
-    "meleeHandPlayer"
-  ],
+  "PreventDamageBlockByItem": [],
   "PreventDamageBlockByItemTag": [
     "gun",
     "bow",
