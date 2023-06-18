@@ -5,15 +5,16 @@ namespace PreventDamageBlock;
 public class ConsoleCmdMod : ConsoleCmdAbstract
 {
     public override bool AllowedInMainMenu => true;
-    public override string[] GetCommands() => new[]
+
+    protected override string[] getCommands() => new[]
     {
         "preventdamageblock",
         "pdb"
     };
 
-    public override string GetDescription() => Localization.Get("PDB_ConsoleCmdDesc");
+    protected override string getDescription() => Localization.Get("PDB_ConsoleCmdDesc");
 
-    public override string GetHelp() => Localization.Get("PDB_ConsoleCmdHelp");
+    protected override string getHelp() => Localization.Get("PDB_ConsoleCmdHelp");
 
     public override void Execute(List<string> _params, CommandSenderInfo _senderInfo)
     {
