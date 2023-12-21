@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xml>
-    <ModInfo>
-        <Name value="PreventDamageBlock/阻止伤害物块" />
-        <Description value="PreventDamageBlock/阻止伤害物块" />
-        <Author value="Mouse0w0" />
-        <Version value="20.0" />
-    </ModInfo>
+    <Name value="PreventDamageBlock"/>
+    <DisplayName value="PreventDamageBlock/阻止伤害物块"/>
+    <Version value="21.0"/>
+    <Description value="Prevent damage block/阻止伤害物块"/>
+    <Author value="Mouse0w0"/>
+    <Website value="https://github.com/mouse0w0/7DTD-PreventDamageBlock"/>
 </xml>
