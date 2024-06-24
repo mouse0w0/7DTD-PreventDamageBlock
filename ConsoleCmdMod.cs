@@ -6,15 +6,15 @@ public class ConsoleCmdMod : ConsoleCmdAbstract
 {
     public override bool AllowedInMainMenu => true;
 
-    protected override string[] getCommands() => new[]
+    public override string[] getCommands() => new[]
     {
         "preventdamageblock",
         "pdb"
     };
 
-    protected override string getDescription() => Localization.Get("PDB_ConsoleCmdDesc");
+    public override string getDescription() => Localization.Get("PDB_ConsoleCmdDesc");
 
-    protected override string getHelp() => Localization.Get("PDB_ConsoleCmdHelp");
+    public override string getHelp() => Localization.Get("PDB_ConsoleCmdHelp");
 
     public override void Execute(List<string> _params, CommandSenderInfo _senderInfo)
     {

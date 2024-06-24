@@ -9,11 +9,11 @@ public static class Config
 {
     public static HashSet<string> PreventDamageBlockByItem { get; private set; }
 
-    public static FastTags PreventDamageBlockByItemTag { get; private set; }
+    public static FastTags<TagGroup.Global> PreventDamageBlockByItemTag { get; private set; }
 
     public static HashSet<string> PreventDamageBlockByEntity { get; private set; }
 
-    public static FastTags PreventDamageBlockByEntityTag { get; private set; }
+    public static FastTags<TagGroup.Global> PreventDamageBlockByEntityTag { get; private set; }
 
     public static bool IsPreventDamageBlock(Entity entity)
     {
@@ -45,18 +45,19 @@ public static class Config
         Log.Out("[PreventDamageBlock] Loaded config");
     }
 
-    private static FastTags ToFastTags(this JToken token)
+    private static FastTags<TagGroup.Global> ToFastTags(this JToken token)
     {
         var tags = token.ToObject<string[]>();
         return tags.Length switch
         {
-            0 => FastTags.none,
-            1 => FastTags.GetTag(tags[0]),
-            2 => FastTags.CombineTags(FastTags.GetTag(tags[0]), FastTags.GetTag(tags[1])),
-            3 => FastTags.CombineTags(FastTags.GetTag(tags[0]), FastTags.GetTag(tags[1]), FastTags.GetTag(tags[2])),
-            4 => FastTags.CombineTags(FastTags.GetTag(tags[0]), FastTags.GetTag(tags[1]), FastTags.GetTag(tags[2]),
-                FastTags.GetTag(tags[3])),
-            _ => tags.Aggregate(FastTags.none, (current, tag) => current | FastTags.GetTag(tag))
+            0 => FastTags<TagGroup.Global>.none,
+            1 => FastTags<TagGroup.Global>.GetTag(tags[0]),
+            2 => FastTags<TagGroup.Global>.CombineTags(FastTags<TagGroup.Global>.GetTag(tags[0]), FastTags<TagGroup.Global>.GetTag(tags[1])),
+            3 => FastTags<TagGroup.Global>.CombineTags(FastTags<TagGroup.Global>.GetTag(tags[0]), FastTags<TagGroup.Global>.GetTag(tags[1]), 
+                FastTags<TagGroup.Global>.GetTag(tags[2])),
+            4 => FastTags<TagGroup.Global>.CombineTags(FastTags<TagGroup.Global>.GetTag(tags[0]), FastTags<TagGroup.Global>.GetTag(tags[1]), 
+                FastTags<TagGroup.Global>.GetTag(tags[2]), FastTags<TagGroup.Global>.GetTag(tags[3])),
+            _ => tags.Aggregate(FastTags<TagGroup.Global>.none, (current, tag) => current | FastTags<TagGroup.Global>.GetTag(tag))
         };
     }
 }
