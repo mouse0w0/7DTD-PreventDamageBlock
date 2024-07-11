@@ -13,6 +13,7 @@ internal static class DamageBlockPatch
     internal static bool Block_OnBlockDamaged_Prefix(WorldBase _world, int _damagePoints, int _entityIdThatDamaged,
         ref int __result)
     {
+        if (!SingletonMonoBehaviour<ConnectionManager>.Instance.IsServer) return true;
         if (_damagePoints <= 0) return true;
         var entity = _world.GetEntity(_entityIdThatDamaged);
         if (entity == null) return true;
@@ -70,6 +71,7 @@ internal static class DamageBlockPatch
     [HarmonyPriority(Priority.First)]
     internal static bool Explosion_AttackBlocks_Prefix(World ___world, int _entityThatCausedExplosion)
     {
+        if (!SingletonMonoBehaviour<ConnectionManager>.Instance.IsServer) return true;
         var entity = ___world.GetEntity(_entityThatCausedExplosion);
         if (entity == null) return true;
         if (Main.Debug)

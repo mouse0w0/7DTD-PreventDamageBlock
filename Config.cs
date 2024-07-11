@@ -37,10 +37,10 @@ public static class Config
         var configFile = Main.Instance.Path + "/Config.json";
         var root = JObject.Parse((File.Exists(configFile) ? File.ReadAllText(configFile) : null) ?? "{}");
 
-        PreventDamageBlockByItem = root.GetValue("PreventDamageBlockByItem").ToObject<HashSet<string>>();
-        PreventDamageBlockByItemTag = root.GetValue("PreventDamageBlockByItemTag").ToFastTags();
-        PreventDamageBlockByEntity = root.GetValue("PreventDamageBlockByEntity").ToObject<HashSet<string>>();
-        PreventDamageBlockByEntityTag = root.GetValue("PreventDamageBlockByEntityTag").ToFastTags();
+        PreventDamageBlockByItem = root["PreventDamageBlockByItem"].ToObject<HashSet<string>>();
+        PreventDamageBlockByItemTag = root["PreventDamageBlockByItemTag"].ToFastTags();
+        PreventDamageBlockByEntity = root["PreventDamageBlockByEntity"].ToObject<HashSet<string>>();
+        PreventDamageBlockByEntityTag = root["PreventDamageBlockByEntityTag"].ToFastTags();
 
         Log.Out("[PreventDamageBlock] Loaded config");
     }
